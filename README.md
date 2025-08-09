@@ -526,7 +526,7 @@ VITE_SINGLE_FILE_LIMIT=5242880           # 5 MB
 
 ---
 
-## Cleaning up / Removing the project (Windows, Docker Desktop + WSL2)
+## Cleaning up / Removing the project 
 
 
 
