@@ -223,6 +223,30 @@ docker compose up -d
 > docker compose build server: changes on the server side.  
 > Tip: docker compose up --build -d also works to rebuild what’s needed automatically.  
 
+When the Dockerfile or dependencies have changed (Full clean rebuild)
+```powershell
+docker compose down --volumes --remove-orphans
+docker compose build --no-cache
+docker compose up -d
+```
+Use case:
+
+- You made changes to the **Dockerfile** (e.g., added new `RUN`, `COPY`, or `ENV` instructions).
+
+- The service’s dependencies have changed (`pip install`, `npm install`, system packages).
+
+- You want to clear the Docker build cache (`--no-cache` → rebuild everything from scratch).
+
+- You want to remove any old dependencies or data stored in volumes (`--volumes`).
+
+- You want to clean up containers from the compose file that are no longer defined (`--remove-orphans`).
+
+
+💡 **In short:**
+
+- **Code changed** → Partial rebuild (`docker compose build serviceName`)
+
+- **Dockerfile / dependencies changed** → Full rebuild + volume cleanup
 
 
 ### 2) Run locally (without Docker)
