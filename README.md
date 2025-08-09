@@ -23,7 +23,6 @@ You can explore the interface, create/edit notebooks, and see simulated executio
 - [Architecture](#architecture)
 - [Tech stack](#tech-stack)
 - [Running the project](#Running-the-project)
-- [Local dev](#local-dev)
 - [How it works (execution flow)](#how-it-works-execution-flow)
 - [Front-end overview](#front-end-overview)
 - [Back-end overview](#back-end-overview)
@@ -281,6 +280,43 @@ Commands are the same; on Linux ensure your user has access to `/var/run/docker.
 ---
 
 ## How it works (execution flow)
+
+1. **Request**: The UI posts `code`, selected `runtime`, resource presets (`mem`, `cpu`), and optional `files` (Data URLs) to `POST /execute`.
+
+2. **Limits**: The server calculates sizes without decoding (from base64 body length) and enforces:
+
+- `SINGLE_FILE_LIMIT` (per file)
+
+- `TOTAL_UPLOAD_LIMIT` (sum of all files in the request)
+
+3. **Workspace**: A temp directory is created. Uploaded files are decoded and written; user code is saved as `code_user.py`.
+
+4. **Runner**:
+
+- For `Base/ML`, `runner.py` sets `MPLBACKEND=Agg`, patches `plt.show()` to save figures into `_plots/`, and also saves remaining figures at the end.
+
+- For `Python`, a minimal `runpy.run_path(...)` launcher is used.
+
+5. **Docker**: The server starts a throwaway container:
+
+- `--network none` (no internet access)
+
+- `--memory <mem>` and `--cpus <cpu>`
+
+- `--pids-limit 50`
+
+- `-v <temp>:/code` and `-w /code`
+
+6. **Response**: Combined stdout/stderr and execution duration are returned. If plots exist, they are read from `_plots/*.png`, base64-encoded, and returned as `data:image/png;base64,....`
+The UI displays text output + a gallery of plots.
+
+**State across cells**: When running a single cell, the UI rebuilds a “cumulative code” prefix from **previous successfully executed code cells** (definitions, imports, assignments, blocks), so later cells see the state defined earlier, similar to a notebook session.
+
+**Traceback cleanup**: Common launcher/runpy/importlib frames are filtered before rendering, so users see the meaningful part of the error.
+
+---
+
+## Front-end overview
 
 
 ---
