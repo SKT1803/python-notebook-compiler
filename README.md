@@ -34,6 +34,7 @@ You can explore the interface, create/edit notebooks, and see simulated executio
 - [Security notes](#security-notes)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
+- [Cleaning up / Removing project](#cleaning-up-removing-project)
 
 --- 
 
@@ -522,6 +523,12 @@ VITE_SINGLE_FILE_LIMIT=5242880           # 5 MB
 - **Upload limit exceeded**
 
     Adjust `SINGLE_FILE_LIMIT` and `TOTAL_UPLOAD_LIMIT` on the server, and UI env mirrors `(VITE_*)` if desired.
+
+---
+
+## Cleaning up / Removing the project (Windows, Docker Desktop + WSL2)
+
+
 
 
 ---
