@@ -579,17 +579,18 @@ You need to **compact** it manually.
 Enable “Hidden items” in Explorer if you can’t see the folders.  
 
 4. **Open PowerShell as Administrator** and run:
-```powershell
-diskpart
-```
-Inside `diskpart`:
-```powershell
-select vdisk file="C:\Users\<USERNAME>\AppData\Local\Docker\wsl\main\ext4.vhdx"
-attach vdisk readonly
-compact vdisk
-detach vdisk
-exit
-```
+    ```powershell
+    diskpart
+    ```
+    
+    Inside `diskpart`:
+    ```powershell
+    select vdisk file="C:\Users\<USERNAME>\AppData\Local\Docker\wsl\main\ext4.vhdx"
+    attach vdisk readonly
+    compact vdisk
+    detach vdisk
+    exit
+    ```
 
 - Replace <USERNAME> with your Windows username.
 
