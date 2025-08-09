@@ -1,0 +1,319 @@
+---------------------- Vanilla Python ----------------------
+
+> Example 1:
+
+import time
+time.sleep(5)
+print("5 saniye bekledim")
+
+
+
+> Example 2:
+
+import random
+from collections import deque
+
+def generate_maze(width, height):
+    """Generates a maze using a recursive backtracking algorithm."""
+    maze = [[1 for _ in range(width)] for _ in range(height)]  # 1 = wall
+    stack = [(0, 0)]
+    maze[0][0] = 0  # 0 = path
+
+    while stack:
+        x, y = stack[-1]
+        neighbors = []
+        for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+            nx, ny = x + dx * 2, y + dy * 2
+            if 0 <= nx < width and 0 <= ny < height and maze[ny][nx] == 1:
+                neighbors.append((nx, ny, dx, dy))
+        
+        if neighbors:
+            nx, ny, dx, dy = random.choice(neighbors)
+            maze[ny][nx] = 0
+            maze[y + dy][x + dx] = 0
+            stack.append((nx, ny))
+        else:
+            stack.pop()
+
+    return maze
+
+def solve_maze_bfs(maze, start, end):
+    """Solves the maze using a Breadth-First Search (BFS) algorithm."""
+    width = len(maze[0])
+    height = len(maze)
+    queue = deque([(start, [start])])
+    visited = set([start])
+
+    while queue:
+        (x, y), path = queue.popleft()
+
+        if (x, y) == end:
+            return path
+        
+        for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < width and 0 <= ny < height and maze[ny][nx] == 0 and (nx, ny) not in visited:
+                visited.add((nx, ny))
+                new_path = list(path)
+                new_path.append((nx, ny))
+                queue.append(((nx, ny), new_path))
+    
+    return None
+
+def print_maze(maze, path=None):
+    """Prints the maze, optionally with the solved path."""
+    for y, row in enumerate(maze):
+        for x, cell in enumerate(row):
+            if path and (x, y) in path:
+                print("o", end=" ")  # Path marker
+            elif cell == 1:
+                print("█", end=" ")  # Wall
+            else:
+                print(" ", end=" ")  # Path
+        print()
+
+# Main execution
+if __name__ == "__main__":
+    maze_width = 5
+    maze_height = 5
+    start_point = (0, 0)
+    end_point = (maze_width - 1, maze_height - 1)
+
+    # Generate and print the maze
+    generated_maze = generate_maze(maze_width, maze_height)
+    print("Generated Maze:")
+    print_maze(generated_maze)
+
+    # Solve the maze and print the solution
+    solution_path = solve_maze_bfs(generated_maze, start_point, end_point)
+    print("\nSolved Maze (o marks the path):")
+    print_maze(generated_maze, solution_path)
+	
+	
+
+
+--------------------------- Base ---------------------------
+
+> Example 1:
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 10, 200)
+y = np.sin(x)
+
+plt.figure(figsize=(6,3))
+plt.plot(x, y, label='sin(x)')
+plt.title('Basit sinüs')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+> Example 2:
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 2*np.pi, 200)
+
+# Figure 1
+plt.figure()
+plt.plot(x, np.sin(x))
+plt.title('sin')
+
+plt.show()  # 1. PNG
+
+# Figure 2
+plt.figure()
+plt.scatter(x, np.cos(x))
+plt.title('cos (scatter)')
+
+plt.show()  # 2. PNG
+
+
+> Example 3:
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    'A': np.random.randn(50).cumsum(),
+    'B': np.random.randn(50).cumsum()
+})
+df.plot()
+plt.title('Pandas line plot')
+plt.show()
+
+
+> Example 4:
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 2*np.pi, 200)
+fig, axes = plt.subplots(2, 1, figsize=(6,4))
+axes[0].plot(x, np.sin(x)); axes[0].set_title('sin')
+axes[1].plot(x, np.cos(x)); axes[1].set_title('cos')
+plt.tight_layout()
+plt.show()
+
+
+> Example 5:
+
+import numpy as np
+
+# NumPy dizisi (array) oluşturma
+# Python listesinden bir NumPy dizisi oluşturuyoruz.
+listem = [1, 2, 3, 4, 5]
+dizi = np.array(listem)
+
+print("Oluşturulan Dizi:", dizi)
+print("Dizinin tipi:", type(dizi))
+print("---")
+
+# Temel matematiksel işlemler
+# Bir dizi üzerinde tüm elemanlara aynı işlemi uygulamak çok kolaydır.
+# Her elemana 10 ekliyoruz.
+yeni_dizi = dizi + 10
+print("Her elemana 10 eklenmiş dizi:", yeni_dizi)
+
+# Her elemanı 2 ile çarpıyoruz.
+carpma_sonucu = dizi * 2
+print("Her eleman 2 ile çarpılmış dizi:", carpma_sonucu)
+print("---")
+
+# İki diziyi toplama
+# Boyutları aynı olan iki diziyi toplayabiliriz.
+dizi2 = np.array([5, 4, 3, 2, 1])
+toplam_dizi = dizi + dizi2
+print("İki dizinin toplamı:", toplam_dizi)
+print("---")
+
+# Dizi elemanlarına erişim
+# Dizi elemanlarına indeks (sıra numarası) ile erişebiliriz.
+print("Dizinin ilk elemanı:", dizi[0])
+print("Dizinin son elemanı:", dizi[-1])
+print("---")
+
+# Dizinin boyutu ve şekli
+# Dizinin kaç elemanı olduğunu öğrenmek için .size, şeklini öğrenmek için .shape kullanırız.
+print("Dizideki eleman sayısı:", dizi.size)
+print("Dizinin şekli (satır, sütun):", dizi.shape)
+
+
+> Example 6:
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Veri oluşturma
+np.random.seed(42)  # Tekrar çalıştırıldığında aynı rastgele veriyi elde etmek için
+x = np.linspace(0, 10, 100)
+y1 = np.sin(x)
+y2 = np.cos(x)
+y3 = np.random.rand(100) * 2 - 1
+categories = ['A', 'B', 'C', 'D']
+values = np.random.randint(5, 20, size=len(categories))
+
+# Şekil ve alt grafik (subplot) oluşturma
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(12, 10), constrained_layout=True)
+
+# 1. Alt grafik: Çift çizgi grafiği
+axes[0, 0].plot(x, y1, label='sin(x)', color='blue', linestyle='-')
+axes[0, 0].plot(x, y2, label='cos(x)', color='red', linestyle='--')
+axes[0, 0].set_title('Sinüs ve Kosinüs Eğrileri', fontsize=14, fontweight='bold')
+axes[0, 0].set_xlabel('X Ekseni')
+axes[0, 0].set_ylabel('Y Ekseni')
+axes[0, 0].legend()
+axes[0, 0].grid(True, linestyle=':', alpha=0.7)
+
+# 2. Alt grafik: Çubuk (Bar) grafiği
+axes[0, 1].bar(categories, values, color=['green', 'orange', 'purple', 'cyan'])
+axes[0, 1].set_title('Kategorik Değerler', fontsize=14, fontweight='bold')
+axes[0, 1].set_xlabel('Kategoriler')
+axes[0, 1].set_ylabel('Değerler')
+axes[0, 1].grid(axis='y', linestyle='--', alpha=0.6)
+
+# 3. Alt grafik: Dağılım (Scatter) grafiği
+axes[1, 0].scatter(x, y3, c=y3, cmap='viridis', s=50, alpha=0.8)
+axes[1, 0].set_title('Rastgele Dağılım Grafiği', fontsize=14, fontweight='bold')
+axes[1, 0].set_xlabel('X Ekseni')
+axes[1, 0].set_ylabel('Rastgele Değerler')
+cbar = fig.colorbar(axes[1, 0].collections[0], ax=axes[1, 0])
+cbar.set_label('Değer Yoğunluğu')
+
+# 4. Alt grafik: Birleştirilmiş çizgi ve dağılım grafiği
+axes[1, 1].plot(x, y1, 'k-')  # 'k-' siyah düz çizgi anlamına gelir
+axes[1, 1].plot(x, y1, 'ro', markersize=4) # 'ro' kırmızı yuvarlak noktalar anlamına gelir
+axes[1, 1].set_title('Çizgi ve Nokta Grafiği', fontsize=14, fontweight='bold')
+axes[1, 1].set_xlabel('X Ekseni')
+axes[1, 1].set_ylabel('Y Ekseni')
+axes[1, 1].annotate('Maksimum Değer', xy=(np.pi/2, 1), xytext=(3, 1.5),
+                     arrowprops=dict(facecolor='black', shrink=0.05),
+                     fontsize=10)
+
+# Genel başlık ekleme ve düzeni ayarlama
+fig.suptitle('Matplotlib ile Karmaşık Grafik Örneği', fontsize=18, fontweight='heavy')
+plt.show()
+	
+---------------------------- ML ----------------------------
+
+> Example 1:
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import xgboost as xgb
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+
+np.random.seed(42)
+X = np.random.rand(1000, 4) * 100
+y = (X[:, 0] + 2*X[:, 1] - 3*X[:, 2] + np.random.normal(0, 10, 1000)) > 150
+
+df = pd.DataFrame(X, columns=['ozellik_1', 'ozellik_2', 'ozellik_3', 'ozellik_4'])
+df['hedef'] = y.astype(int)
+
+print("Oluşturulan DataFrame'in ilk 5 satırı:")
+print(df.head())
+print("\nDataFrame sütun adları:")
+print(df.columns)
+
+X_data = df.drop('hedef', axis=1)
+y_data = df['hedef']
+
+
+X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.2, random_state=42)
+
+
+model = xgb.XGBClassifier(objective='binary:logistic', eval_metric='logloss', use_label_encoder=False)
+model.fit(X_train, y_train)
+
+
+y_pred = model.predict(X_test)
+
+
+dogruluk = accuracy_score(y_test, y_pred)
+print(f"\nModelin Doğruluğu: {dogruluk:.2f}")
+
+
+plt.figure(figsize=(10, 6))
+plt.scatter(range(len(y_test)), y_test, alpha=0.5, label='Gerçek Değerler', color='blue')
+plt.scatter(range(len(y_pred)), y_pred, alpha=0.5, label='Tahminler', color='red')
+plt.title('XGBoost Tahminleri ile Gerçek Değerlerin Karşılaştırılması')
+plt.xlabel('Örnek Numarası')
+plt.ylabel('Sınıf (0 veya 1)')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+
+
+
+
+
+
