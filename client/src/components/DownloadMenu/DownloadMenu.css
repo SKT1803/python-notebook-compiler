@@ -1,0 +1,57 @@
+.download-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+
+.download-button {
+  padding: 10px 14px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+
+.download-button:hover {
+  background-color: #357ab8;
+}
+
+.download-options {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: auto;
+  min-width: 150px;
+  z-index: 1000;
+  padding: 8px 0;
+}
+
+.download-options button {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #333;
+  transition: background 0.2s;
+}
+
+.download-options button:hover {
+  background-color: #f0f0f0;
+}
+
+
+.download-options .do-pdf {
+  cursor: not-allowed;
+} 

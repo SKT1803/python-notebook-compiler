@@ -1,0 +1,19 @@
+.md-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.md-toolbar button {
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.md-toolbar button:hover {
+  background: #e0e0e0;
+}

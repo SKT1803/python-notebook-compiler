@@ -1,0 +1,76 @@
+.comment-block {
+  display: flex;
+  position: relative;
+  width: 90%;
+  left: 7%;
+  margin: 16px 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.comment-block.split-view {
+  display: flex;
+  gap: 8px;
+}
+
+.comment-block.single-preview {
+  width: 90%;
+  left: 7%;
+  margin: 16px 0;
+  cursor: pointer;
+}
+
+.comment-block.single-preview .comment-preview {
+  width: 100%;
+}
+
+.comment-block-view,
+.comment-preview {
+  width: 50%;
+  padding: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  border-radius: 8px;
+  line-height: 1.6;
+  min-height: 120px;
+  box-sizing: border-box;
+}
+
+.comment-block-view {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  color: black;
+  resize: none;
+  overflow: hidden;
+  outline: none;
+}
+
+.comment-preview {
+  border: 1px solid #ccc;
+  background-color: #fef9c3;
+  border-left: 4px solid #facc15;
+  color: black;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.comment-preview p {
+  margin: 0;
+}
+
+/* Eğer alt satırlarda da boşluk fazlaysa (ör. <ul>, <h1> vs için) */
+.comment-preview > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.comment-preview pre {
+  background-color: #f5f5f5;
+  padding: 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  overflow-x: auto;
+}
+

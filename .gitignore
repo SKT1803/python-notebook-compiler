@@ -1,0 +1,68 @@
+# Node / React (client)
+node_modules/
+dist/
+dist-ssr/
+*.local
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Go (server)
+server/bin/
+server/build/
+server/*.exe
+server/*.out
+server/*.test
+
+# Python (if any scripts/tools)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+.env
+.venv
+venv/
+ENV/
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Docker
+*.pid
+# Ignore local-only override files
+docker-compose.override.yml
+
+# Ignore local-only Docker volume data
+docker_data/
+
+# Keep Dockerfiles and main compose configs in Git
+!Dockerfile
+!docker-compose.yml
+!docker-compose.*.yml
+
+# Logs
+logs/
+*.log
+log.txt
+
+# Other build artifacts
+coverage/
+build/
+tmp/
+temp/

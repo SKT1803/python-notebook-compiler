@@ -1,0 +1,49 @@
+services:
+  # --- builder images (sadece imaj üretir) ---
+  pybase:
+    build:
+      context: ./server/runtimes/base
+      dockerfile: Dockerfile
+    image: py-sandbox:base
+    command: ["true"]
+    restart: "no"
+
+  pyml:
+    build:
+      context: ./server/runtimes/ml
+      dockerfile: Dockerfile
+    image: py-sandbox:ml
+    command: ["true"]
+    restart: "no"
+
+  # --- backend ---
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - /tmp:/tmp
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file:
+      - ./server/.env
+    depends_on:
+      - pybase
+      - pyml
+
+  # --- frontend ---
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    environment:
+      - VITE_BACKEND_URL=http://server:8080
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      - server
+

@@ -1,0 +1,60 @@
+.editor-container {
+  display: flex;
+  position: relative;
+  width: 90%;
+  left: 2%;
+  margin: 16px auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fafafa;
+  font-family: 'Fira Code', monospace;
+}
+
+.editor-line-numbers {
+  background: #3b82f6 ;
+  color: #888;
+  width: 1.5rem;
+  padding: 8px 4px;
+  text-align: center;
+  user-select: none;
+}
+
+.line-number {
+  height: 20px; /* line-height ile eşleşiyor */
+  line-height: 20px;
+  font-size: 14px;
+  color: white;
+}
+
+.editor-input-area {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ÜSTTEKİ TRANSPARENT TEXTAREA */
+.editor-textarea {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  resize: none;
+  border: none;
+  margin: 0;
+  padding: 8px 12px;      
+  font-size: 14px;
+  line-height: 20px;
+  font-family: inherit;
+  background: transparent;
+  color: transparent; /* sadece caret’i göster */
+  caret-color: #000;
+  overflow: hidden;
+  box-sizing: border-box;
+  white-space: pre-wrap; /* satır sarımı Highlighter ile uyumlu */
+}
+
+
+.editor-textarea:focus {
+  outline: none;
+  box-shadow: none;
+}

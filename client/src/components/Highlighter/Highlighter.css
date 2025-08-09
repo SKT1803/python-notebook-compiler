@@ -1,0 +1,67 @@
+.highlighter-container {
+  margin: 0;
+  padding: 8px 12px;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  line-height: 20px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  color: #000;
+}
+
+.highlighter-container.placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+span[data-token="token-string"] { 
+  color: #032f62; 
+}
+
+span[data-token="token-comment"] { 
+  color: #6a737d; 
+  font-style: italic; 
+}
+
+span[data-token="token-decorator"] { 
+  color: #6f42c1; 
+  font-style: italic; 
+}
+
+span[data-token="token-keyword"] { 
+  color: #d73a49; 
+  font-weight: bold; 
+}
+
+span[data-token="token-boolean"] { 
+  color: #005cc5; 
+  font-weight: bold;
+ }
+
+span[data-token="token-builtin"] { 
+  color: #6f42c1;
+ }
+
+span[data-token="token-number"] { 
+  color: #005cc5; 
+}
+
+span[data-token="token-operator"] 
+{ 
+  color: #e36209;
+ }
+
+span[data-token="token-brace"] { 
+  color: #d73a49; 
+}
+
+span[data-token="token-punctuation"] { 
+  color: #24292e; 
+}
+
+span[data-token="token-magic"] { 
+  color: #22863a; 
+  font-style: italic;
+ }
+
