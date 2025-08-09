@@ -33,8 +33,8 @@ You can explore the interface, create/edit notebooks, and see simulated executio
 - [Environment variables](#environment-variables)
 - [Security notes](#security-notes)
 - [Troubleshooting](#troubleshooting)
-- [License](#license)
 - [Cleaning up / Removing the project (Windows, Docker Desktop + WSL2)](#cleaning-up--removing-the-project-windows-docker-desktop--wsl2)
+- [License](#license)
 
 --- 
 
@@ -558,7 +558,9 @@ You need to **compact** it manually.
 1. **Close Docker Desktop** completely (Quit from system tray).
 
 2. **Shut down WSL**:
+   
 Open powershell, then run:
+
 ```powershell
 wsl --shutdown
 ```
