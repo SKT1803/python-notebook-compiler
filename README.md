@@ -52,7 +52,9 @@ You can explore the interface, create/edit notebooks, and see simulated executio
 
 ## Highlights
 
-- **Notebook-style blocks**: `code`, `comment (Markdown)`, and `image`. Drag & drop to reorder.
+- **Notebook-style blocks**: `code`, `comment (Markdown)`, and `image`.
+
+- **Drag & drop blocks**: Reorder code, comment (Markdown), and image blocks easily.
 
 - **Execute**: Run a single cell or **Run All**. Cancel a running cell.
 
