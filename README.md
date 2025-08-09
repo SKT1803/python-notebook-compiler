@@ -644,19 +644,31 @@ You can try the code examples in the **"Code Example"** txt.
     <td><img src="images/4.png" width="1000"></td>
   </tr>
 
-### Comment Block text editing (rich text / markdown editor) toolbar
+### Comment Block text editing (rich text / markdown editor) toolbar:
   
    <tr>
     <td><img src="images/5.png" width="1000"></td>
    </tr>
 
-### Comment Block text editing (rich text / markdown editor) toolbar: The cell was run
+### Comment Block text editing (rich text / markdown editor) toolbar: The cell was run:
 
    <tr>
     <td><img src="images/6.png" width="1000"></td>
    </tr>
 
-### Example of showing defined variables
+###  Cell execution stopped:
+
+   <tr>
+    <td><img src="images/11.png" width="1000"></td>
+   </tr>
+
+###  Cell execution is continuing:
+
+   <tr>
+    <td><img src="images/12.png" width="1000"></td>
+   </tr>
+
+### Example of showing defined variables:
 
    <tr>
     <td><img src="images/7.png" width="1000"></td>
@@ -671,14 +683,12 @@ You can try the code examples in the **"Code Example"** txt.
 ### Code Example, RunTime -> ML:
 
    <tr>
-    <td><img src="images/9.png" width="500"></td>
+    <td><img src="images/9.png" width="1000"></td>
    </tr>
 
    <tr>
-    <td><img src="images/10.png" width="500"></td>
+    <td><img src="images/10.png" width="1000"></td>
    </tr>
-
-
 
 
 ---
