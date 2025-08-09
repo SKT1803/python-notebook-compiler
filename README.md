@@ -34,7 +34,7 @@ You can explore the interface, create/edit notebooks, and see simulated executio
 - [Security notes](#security-notes)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
-- [Cleaning up / Removing project](#cleaning-up-removing-project)
+- [Cleaning up / Removing the project (Windows, Docker Desktop + WSL2)](#cleaning-up-removing-project)
 
 --- 
 
@@ -526,9 +526,89 @@ VITE_SINGLE_FILE_LIMIT=5242880           # 5 MB
 
 ---
 
-## Cleaning up / Removing the project 
+## Cleaning up / Removing the project (Windows, Docker Desktop + WSL2)
+
+> ⚠️ Warning: This will delete unused images, containers, volumes, and can free up significant disk space.  
+> Do this only if you no longer need the project or want to reclaim space.
+
+### 1) Remove unused Docker data
+
+> 💡 **Tip**: You can also remove containers, images, and volumes directly from **Docker Desktop**  
+> by right-clicking and selecting **Delete** (trash icon).  
+> However, this does **not** shrink the WSL `.vhdx` file, for reclaiming disk space,  
+> follow the manual `prune` + `compact vdisk` steps below.  
+
+Make sure **no containers are running**, then run:
+
+```powershell
+docker system prune -a --volumes -f
+docker builder prune -a -f
+```
+
+- `--volumes` will also delete unused **named volumes**.
+
+- This cleans up **inside** Docker’s storage, but **does not shrink** the physical `.vhdx` file used by WSL.
 
 
+### 2) Shrink the WSL .vhdx file (reclaim physical disk space)
+
+Windows does **not** automatically shrink the `.vhdx` file when space is freed.
+
+You need to **compact** it manually.
+
+**Steps:**
+
+1. **Close Docker Desktop** completely (Quit from system tray).
+
+2. **Shut down WSL**:
+```powershell
+wsl --shutdown
+```
+3. **Find your** `ext4.vhdx` **path**:
+
+It’s usually one of these:
+
+```powershell
+%LOCALAPPDATA%\Docker\wsl\data\ext4.vhdx
+%LOCALAPPDATA%\Docker\wsl\distro\docker-desktop-data\data\ext4.vhdx
+%LOCALAPPDATA%\Docker\wsl\main\ext4.vhdx
+%LOCALAPPDATA%\Docker\wsl\disk\ext4.vhdx
+```
+> 📍 Tip: You can quickly open the AppData\Local folder by typing %AppData% into the Windows search bar, then go one folder up to Local\Docker\wsl\.... o find the `.vhdx` file.
+
+Enable “Hidden items” in Explorer if you can’t see the folders.  
+
+4. ""Open PowerShell as Administrator"" and run:
+```powershell
+diskpart
+```
+Inside `diskpart`:
+```powershell
+select vdisk file="C:\Users\<USERNAME>\AppData\Local\Docker\wsl\main\ext4.vhdx"
+attach vdisk readonly
+compact vdisk
+detach vdisk
+exit
+```
+
+- Replace <USERNAME> with your Windows username.
+
+- If your ext4.vhdx is in disk or data folder instead of main, adjust the path accordingly.
+
+### 3) Restart Docker Desktop
+
+After compacting, start Docker Desktop again. WSL will start automatically, and Docker will recreate any missing images the next time you run:
+```powershell
+docker compose up --build
+```
+
+### What happens here?
+
+- `docker system prune` → **frees up space inside** Docker’s virtual disk.
+
+- `compact vdisk` → **shrinks the** `.vhdx` **file** itself, giving the freed space back to Windows.
+
+> The process is safe: it doesn’t delete active containers, images, or volumes you haven’t already removed with `prune`.
 
 
 ---
