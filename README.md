@@ -318,6 +318,43 @@ The UI displays text output + a gallery of plots.
 
 ## Front-end overview
 
+- **Notebook.jsx**
+
+    - Manages block list, drag & drop, titles, *Run All*, runtime & resource drop-downs, upload toggles.
+
+    - Maintains per-cell run state (`isRunning`, `isPending`, `isExecuted`) and supports cancellation via `AbortController`.
+
+    - File quotas: UI mirrors server defaults and shows a global progress bar.
+
+- **CodeEditor**
+
+    - Textarea + overlaid highlighter. Global line numbering via `startLine` offset.
+
+    - Shortcuts: `Tab` inserts two spaces; **Ctrl/Cmd+Enter** runs the cell.
+
+- **CommentBlock**
+
+    - Undo/redo (Ctrl+Z / Ctrl+Y or Ctrl+Shift+Z), Tab indent, **Ctrl/Cmd+Enter** to “commit”.
+
+    - Markdown toolbar: heading, bold/italic, code block, ordered/unordered lists, smart links with `https://` normalization.
+
+- **FilesPanel**
+
+    - Drag & drop area + multi-select input. Per-file status: `reading` → `done`/`error`. Toasts on completion/failure.
+
+- **DownloadMenu**
+
+    - `.ipynb`: code cells become Jupyter **code** cells, comments become **markdown** cells, current text output is attached as a `stream` output.
+
+    - `.py`: comment blocks are converted to `# ...` lines; blocks are separated by blank lines.
+
+    - `.pdf`: groundwork in place using `jspdf` (button disabled for now).
+
+
+---
+
+## Back-end overview
+
 
 ---
 
