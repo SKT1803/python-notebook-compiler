@@ -206,11 +206,9 @@ docker compose build client
 docker compose build server
 docker compose up -d
 ```
-> docker compose build client: changes on the client side
-
-> docker compose build server: changes on the server side
-
-> Tip: docker compose up --build -d also works to rebuild what’s needed automatically.,
+> docker compose build client: changes on the client side.  
+> docker compose build server: changes on the server side.  
+> Tip: docker compose up --build -d also works to rebuild what’s needed automatically.  
 
 
 
