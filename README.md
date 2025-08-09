@@ -1,4 +1,4 @@
-# PYTHON-COMPILER — Lightweight Notebook-style Python Runner (Docker-isolated)
+# <img src="./images/logo.png" alt="Python Logo" width="36"/> PYTHON-COMPILER — Lightweight Notebook-style Python Runner (Docker-isolated)
 
 A Vite + React front-end and a Go (Gin) back-end that execute Python code **inside isolated Docker containers**. 
 
