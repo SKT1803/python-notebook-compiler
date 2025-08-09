@@ -15,6 +15,15 @@ You can explore the interface, create/edit notebooks, and see simulated executio
 
 🌐 Live UI: [python-notebook-compiler](https://python-notebook-compiler.vercel.app/)
 
+
+<table>
+  <tr>
+    <td><img src="images/1.png" width="500"></td>
+    <td><img src="images/2.png" width="500"></td>
+  </tr>
+</table>
+
+
 --- 
 
 ## Table of Contents
