@@ -262,7 +262,7 @@ npm run dev
 - **Docker Desktop must be running** before any `docker compose` commands.
 
 - If `docker compose build pyml` fails, you likely haven’t built **pybase** first. Run:
-- 
+
 ```powershell
 docker compose build pybase
 docker compose build pyml
@@ -285,27 +285,27 @@ Commands are the same; on Linux ensure your user has access to `/var/run/docker.
 
 2. **Limits**: The server calculates sizes without decoding (from base64 body length) and enforces:
 
-- `SINGLE_FILE_LIMIT` (per file)
+      - `SINGLE_FILE_LIMIT` (per file)
 
-- `TOTAL_UPLOAD_LIMIT` (sum of all files in the request)
-
+      - `TOTAL_UPLOAD_LIMIT` (sum of all files in the request)
+  
 3. **Workspace**: A temp directory is created. Uploaded files are decoded and written; user code is saved as `code_user.py`.
 
 4. **Runner**:
 
-- For `Base/ML`, `runner.py` sets `MPLBACKEND=Agg`, patches `plt.show()` to save figures into `_plots/`, and also saves remaining figures at the end.
+      - For `Base/ML`, `runner.py` sets `MPLBACKEND=Agg`, patches `plt.show()` to save figures into `_plots/`, and also saves remaining figures at the end.
 
-- For `Python`, a minimal `runpy.run_path(...)` launcher is used.
+      - For `Python`, a minimal `runpy.run_path(...)` launcher is used.
 
 5. **Docker**: The server starts a throwaway container:
 
-- `--network none` (no internet access)
+      - `--network none` (no internet access)
 
-- `--memory <mem>` and `--cpus <cpu>`
+      - `--memory <mem>` and `--cpus <cpu>`
 
-- `--pids-limit 50`
+      - `--pids-limit 50`
 
-- `-v <temp>:/code` and `-w /code`
+      - `-v <temp>:/code` and `-w /code`
 
 6. **Response**: Combined stdout/stderr and execution duration are returned. If plots exist, they are read from `_plots/*.png`, base64-encoded, and returned as `data:image/png;base64,....`
 The UI displays text output + a gallery of plots.
