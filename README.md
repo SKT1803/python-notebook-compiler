@@ -22,7 +22,7 @@ You can explore the interface, create/edit notebooks, and see simulated executio
 - [Highlights](#highlights)
 - [Architecture](#architecture)
 - [Tech stack](#tech-stack)
-- [Running the project](#Running-the-project)
+- [Running the project](#running-the-project)
 - [How it works (execution flow)](#how-it-works-execution-flow)
 - [Front-end overview](#front-end-overview)
 - [Back-end overview](#back-end-overview)
@@ -34,7 +34,7 @@ You can explore the interface, create/edit notebooks, and see simulated executio
 - [Security notes](#security-notes)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
-- [Cleaning up / Removing the project (Windows, Docker Desktop + WSL2)](#cleaning-up-removing-project)
+- [Cleaning up / Removing the project (Windows, Docker Desktop + WSL2)](#cleaning-up--removing-the-project-windows-docker-desktop--wsl2)
 
 --- 
 
@@ -578,7 +578,7 @@ It’s usually one of these:
 
 Enable “Hidden items” in Explorer if you can’t see the folders.  
 
-4. ""Open PowerShell as Administrator"" and run:
+4. **Open PowerShell as Administrator** and run:
 ```powershell
 diskpart
 ```
@@ -608,7 +608,7 @@ docker compose up --build
 
 - `compact vdisk` → **shrinks the** `.vhdx` **file** itself, giving the freed space back to Windows.
 
-> The process is safe: it doesn’t delete active containers, images, or volumes you haven’t already removed with `prune`.
+> The process is safe: it won’t remove active containers, images, or volumes you haven’t already deleted.
 
 
 ---
