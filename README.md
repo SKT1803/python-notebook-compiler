@@ -379,9 +379,12 @@ The UI displays text output + a gallery of plots.
 
     - Runtime → Docker image: `"python" → python:3.11-slim`, `"base" → py-sandbox:base`, `"ml" → py-sandbox:ml`
     
-    - Memory presets: `256m`, `512m`, `1g` (validated and capped server-side)
+    - Memory presets: `256m`, `512m`, `1g`, `2g`,  (validated and capped server-side)
     
-    - CPU presets: `0.25`, `0.5`, `1.0` (validated and capped server-side)
+    - CPU presets: `0.25`, `0.5`, `1.0` , `2.0` (validated and capped server-side)
+
+> The UI currently offers CPU options up to 1g/1.0; higher values will only be available via the API or if the UI is updated.
+
 
 ---
 
@@ -450,9 +453,61 @@ Images are built automatically by `docker-compose.yml` (builder services `pybase
 
 ## Environment variables
 
+**Front-end (`client/.env`)**
+```powershell
+VITE_BACKEND_URL=http://localhost:8080   # In Compose: http://server:8080
+VITE_TOTAL_UPLOAD_LIMIT=52428800         # 50 MB
+VITE_SINGLE_FILE_LIMIT=5242880           # 5 MB
+```
+
+**Back-end (`server/.env`)**
+
+  - **Upload limits**
+
+      - `TOTAL_UPLOAD_LIMIT` (bytes) — default: `50 * 1024 * 1024`
+
+      - `SINGLE_FILE_LIMIT` (bytes) — default: `5 * 1024 * 1024`
+
+  - **Runtime fallback**
+
+      - `PY_IMAGE` — default Docker image when runtime is unknown; default `python:3.11-slim`
+
+  - **Resource defaults and caps**
+
+      - `DEFAULT_MEM` → one of `256m|512m|1g|2g` (default `512m`)
+      
+      - `DEFAULT_CPU` → one of `0.25|0.5|1.0|2.0` (default `0.5`)
+      
+      - `MAX_MEM` (default `2g`)
+      
+      - `MAX_CPU` (default `2.0`)
+
+> The server validates the values and caps them; out-of-range inputs fall back to safe defaults.  
 
 ---
 
+### Security notes
+
+- Code runs in a **throwaway Docker container** with:
+
+    - **No network (`--network none`)**
+    
+    - **CPU/RAM limits (`--cpus`, `--memory`)**
+    
+    - **Process limit (`--pids-limit 50`)**
+
+- A fresh temp workspace is created per request and deleted afterward.
+
+- Because the server talks to the Docker daemon (via a mounted socket in Compose), deploy this in **trusted environments** only.
+
+---
+
+## Troubleshooting
+
+
+
+
+---
 
 ## License
 
