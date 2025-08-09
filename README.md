@@ -407,8 +407,52 @@ Images are built automatically by `docker-compose.yml` (builder services `pybase
 
 ## API
 
+`POST /execute`
+
+**Request body**
+ ```powershell
+{
+  "code": "print('hello')",
+  "files": [{ "name": "data.csv", "data": "data:text/csv;base64,AAAA..." }],
+  "runtime": "python | base | ml",
+  "mem": "256m | 512m | 1g",
+  "cpu": "0.25 | 0.5 | 1.0"
+}
+```
+
+**Response**
+```powershell
+{
+  "output": "Cell ran successfully.\nDuration: 0.42 seconds",
+  "error": "",
+  "images": ["data:image/png;base64,..."]
+}
+
+```
+
+## Keyboard shortcuts
+
+- **Code cell**: `Ctrl/Cmd + Enter` → run • `Tab` → insert two spaces
+
+- **Comment (Markdown) cell**: `Ctrl/Cmd + Enter` → commit/preview • `Ctrl+Z / Ctrl+Y` undo/redo • `Tab` indent
 
 ---
+
+## Export / download
+
+- **Jupyter Notebook (`.ipynb`)**: code → code cell, comments → markdown cell, current text output → `stream` output.
+
+- **Python Script (`.py`)**: comments are converted to `#` lines; blank lines between blocks.
+
+- **PDF**: button present but disabled (can be enabled later).
+
+---
+
+## Environment variables
+
+
+---
+
 
 ## License
 
