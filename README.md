@@ -533,10 +533,8 @@ VITE_SINGLE_FILE_LIMIT=5242880           # 5 MB
 
 ### 1) Remove unused Docker data
 
-> 💡 **Tip**: You can also remove containers, images, and volumes directly from **Docker Desktop**  
-> by right-clicking and selecting **Delete** (trash icon).  
-> However, this does **not** shrink the WSL `.vhdx` file, for reclaiming disk space,  
-> follow the manual `prune` + `compact vdisk` steps below.  
+> 💡 **Tip**: You can also remove containers, images, and volumes directly from **Docker Desktop** by right-clicking and selecting **Delete** (trash icon).     
+> However, this does **not** shrink the WSL `.vhdx` file, for reclaiming disk space, follow the manual `prune` + `compact vdisk` steps below.  
 
 Make sure **no containers are running**, then run:
 
