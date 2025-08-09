@@ -559,21 +559,21 @@ You need to **compact** it manually.
 
 2. **Shut down WSL**:
    
-  Open powershell, then run:
+    Open powershell, then run:
 
-  ```powershell
-  wsl --shutdown
-  ```
+    ```powershell
+    wsl --shutdown
+    ```
 3. **Find your** `ext4.vhdx` **path**:
 
-  It’s usually one of these:
+    It’s usually one of these:
 
-  ```powershell
-  %LOCALAPPDATA%\Docker\wsl\data\ext4.vhdx
-  %LOCALAPPDATA%\Docker\wsl\distro\docker-desktop-data\data\ext4.vhdx
-  %LOCALAPPDATA%\Docker\wsl\main\ext4.vhdx
-  %LOCALAPPDATA%\Docker\wsl\disk\ext4.vhdx
-```
+    ```powershell
+    %LOCALAPPDATA%\Docker\wsl\data\ext4.vhdx
+    %LOCALAPPDATA%\Docker\wsl\distro\docker-desktop-data\data\ext4.vhdx
+    %LOCALAPPDATA%\Docker\wsl\main\ext4.vhdx
+    %LOCALAPPDATA%\Docker\wsl\disk\ext4.vhdx
+   ```
 > 📍 Tip: You can quickly open the AppData\Local folder by typing %AppData% into the Windows search bar, then go one folder up to Local\Docker\wsl\.... o find the `.vhdx` file.
 
 Enable “Hidden items” in Explorer if you can’t see the folders.  
