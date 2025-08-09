@@ -355,6 +355,58 @@ The UI displays text output + a gallery of plots.
 
 ## Back-end overview
 
+- `POST /execute` (Gin)
+
+    - Validates upload limits from base64 body length (no full decode required for checking).
+    
+    - Creates temp directory; writes uploaded files and `code_user.py`.
+    
+    - Generates `runner.py` depending on the selected runtime.
+    
+    - Builds and runs a Docker command with strict caps and `--network none`.
+    
+    - Returns:
+
+      ```powershell
+      {
+        "output": "<stdout/stderr + duration>",
+        "error": "<optional>",
+        "images": ["data:image/png;base64,..."]
+      }
+      ```
+
+- **Runtime selection & caps**
+
+    - Runtime → Docker image: `"python" → python:3.11-slim`, `"base" → py-sandbox:base`, `"ml" → py-sandbox:ml`
+    
+    - Memory presets: `256m`, `512m`, `1g` (validated and capped server-side)
+    
+    - CPU presets: `0.25`, `0.5`, `1.0` (validated and capped server-side)
+
+---
+
+## Runtime images
+
+- `python:3.11-slim`
+
+    Minimal runtime; **no matplotlib** (use Base/ML for plotting).
+
+- `py-sandbox:base`
+
+    Scientific stack: `numpy pandas scipy scikit-learn matplotlib seaborn pillow requests beautifulsoup4 lxml pyarrow openpyxl`.
+
+- `py-sandbox:ml`
+
+    Base + `xgboost lightgbm`.
+
+
+Images are built automatically by `docker-compose.yml` (builder services `pybase` and `pyml`).
+
+
+---
+
+## API
+
 
 ---
 
