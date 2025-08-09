@@ -628,8 +628,14 @@ docker compose up --build
 
 ## Previews
 
+You can try the code examples in the **"Code Example"** txt.
 
 
+- Uploading a csv file:
+
+  <tr>
+    <td><img src="images/3.png" width="1000"></td>
+  </tr>
 
 ---
 
