@@ -33,7 +33,6 @@ You can explore the interface, create/edit notebooks, and see simulated executio
 - [Environment variables](#environment-variables)
 - [Security notes](#security-notes)
 - [Troubleshooting](#troubleshooting)
-- [Roadmap](#roadmap)
 - [License](#license)
 
 --- 
@@ -504,7 +503,20 @@ VITE_SINGLE_FILE_LIMIT=5242880           # 5 MB
 
 ## Troubleshooting
 
+- **“Docker is not running. Please start Docker Desktop.”**
+Start Docker Desktop / Docker daemon.
 
+- **Permission errors on Linux**
+Ensure your user has access to `/var/run/docker.sock` (add to `docker` group, re-login).
+
+- **WSL2/Windows**
+Use Docker Desktop with WSL2 backend enabled.
+
+- **No plots displayed**
+Select `Base` or `M`L runtime (the plain `Python` runtime doesn’t include matplotlib).
+
+- **Upload limit exceeded**
+Adjust `SINGLE_FILE_LIMIT` and `TOTAL_UPLOAD_LIMIT` on the server, and UI env mirrors `(VITE_*)` if desired.
 
 
 ---
