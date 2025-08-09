@@ -631,49 +631,54 @@ docker compose up --build
 You can try the code examples in the **"Code Example"** txt.
 
 
-- Uploading a csv file:
+### Uploading a csv file:
 
   <tr>
     <td><img src="images/3.png" width="1000"></td>
   </tr>
 
 
-- Comment Block preview:
+### Comment Block preview:
   
- <tr>
+  <tr>
     <td><img src="images/4.png" width="1000"></td>
   </tr>
 
-- Comment Block text editing (rich text / markdown editor) toolbar
+### Comment Block text editing (rich text / markdown editor) toolbar
   
    <tr>
     <td><img src="images/5.png" width="1000"></td>
-  </tr>
+   </tr>
 
-- Comment Block text editing (rich text / markdown editor) toolbar: The cell was run
+### Comment Block text editing (rich text / markdown editor) toolbar: The cell was run
 
    <tr>
     <td><img src="images/6.png" width="1000"></td>
-  </tr>
+   </tr>
 
-- Example of showing defined variables
+### Example of showing defined variables
 
    <tr>
     <td><img src="images/7.png" width="1000"></td>
-  </tr>
+   </tr>
 
-- Code Example, RunTime -> Base:
+### Code Example, RunTime -> Base:
 
- <tr>
+   <tr>
     <td><img src="images/8.png" width="1000"></td>
-  </tr>
+   </tr>
 
-- Code Example, RunTime -> ML:
+### Code Example, RunTime -> ML:
 
- <tr>
+   <tr>
     <td><img src="images/9.png" width="500"></td>
-   <td><img src="images/10.png" width="500"></td>
-  </tr>
+   </tr>
+
+   <tr>
+    <td><img src="images/10.png" width="500"></td>
+   </tr>
+
+
 
 
 ---
