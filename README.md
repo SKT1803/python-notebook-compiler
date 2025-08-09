@@ -19,6 +19,8 @@ You can explore the interface, create/edit notebooks, and see simulated executio
 <table>
   <tr>
     <td><img src="images/1.png" width="500"></td>
+  </tr>
+    <tr>
     <td><img src="images/2.png" width="500"></td>
   </tr>
 </table>
@@ -43,6 +45,7 @@ You can explore the interface, create/edit notebooks, and see simulated executio
 - [Security notes](#security-notes)
 - [Troubleshooting](#troubleshooting)
 - [Cleaning up / Removing the project (Windows, Docker Desktop + WSL2)](#cleaning-up--removing-the-project-windows-docker-desktop--wsl2)
+- [Previews](#previews)
 - [License](#license)
 
 --- 
@@ -619,6 +622,13 @@ docker compose up --build
 - `compact vdisk` → **shrinks the** `.vhdx` **file** itself, giving the freed space back to Windows.
 
 > The process is safe: it won’t remove active containers, images, or volumes you haven’t already deleted.
+
+
+---
+
+## Previews
+
+
 
 
 ---
