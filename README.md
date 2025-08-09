@@ -18,10 +18,10 @@ You can explore the interface, create/edit notebooks, and see simulated executio
 
 <table>
   <tr>
-    <td><img src="images/1.png" width="500"></td>
+    <td><img src="images/1.png" width="1000"></td>
   </tr>
     <tr>
-    <td><img src="images/2.png" width="500"></td>
+    <td><img src="images/2.png" width="1000"></td>
   </tr>
 </table>
 
