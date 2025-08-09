@@ -138,9 +138,83 @@ Runtimes (Docker)
 
 ## Running the project
 
+> Prereqs: **Docker Desktop running** (Windows/macOS) or Docker daemon (Linux).  
+> Optional for local dev: **Node 18+**, **Go 1.23+**.
+
+
+### 1) Run with Docker
+
+####  First-time setup (clean machine)
+
+Use this when you have **no images/containers/volumes yet** (e.g., after a full clean).
+
+1. **Go to the project folder**
+```powershell
+cd "C:\Users\<USERNAME>\OneDrive\Desktop\python-notebook-compiler"
+```
+
+2. **Build the Python Base image**
+```powershell
+docker compose build pybase
+```
+> Contains Python 3.11 + scientific libs (numpy, pandas, matplotlib, …).
+
+3. **Build the Python ML image**
+```powershell
+docker compose build pyml
+```
+> Builds on top of **Base** (adds xgboost, lightgbm).
+
+4. **Build the remaining services**
+```powershell
+docker compose build
+```
+> Builds server, client (and nginx base) images.
+
+5. **Start everything (detached)**
+ ```powershell
+docker compose up -d
+```  
+
+6. **(Optional) Verify containers are up**
+ ```powershell
+docker ps
+```  
+> You should see all services in Up state.
+
+**Default endpoints**
+
+- Frontend → http://localhost:5173
+- Backend → http://localhost:8080
+
+
+#### Normal start (images already exist)
+
+1. **Go to the project folder**
+```powershell
+cd "C:\Users\<USERNAME>\OneDrive\Desktop\python-notebook-compiler"
+```
+
+2. **Start services**
+```powershell
+docker compose up -d
+```
+
+If you changed code and need a rebuild for specific services:
+```powershell
+docker compose build client
+docker compose build server
+docker compose up -d
+```
+> docker compose build client: changes on the client side
+
+> docker compose build server: changes on the server side
+
+> Tip: docker compose up --build -d also works to rebuild what’s needed automatically.,
 
 
 
+### 2) Run locally (without Docker)
 
 
 
