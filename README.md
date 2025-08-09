@@ -536,8 +536,7 @@ VITE_SINGLE_FILE_LIMIT=5242880           # 5 MB
 > 💡 **Tip**: You can also remove containers, images, and volumes directly from **Docker Desktop** by right-clicking and selecting **Delete** (trash icon).     
 > However, this does **not** shrink the WSL `.vhdx` file, for reclaiming disk space, follow the manual `prune` + `compact vdisk` steps below.  
 
-Make sure **no containers are running**, then run:
-
+Make sure **no containers are running**, then run (on powershell or project root terminal):
 ```powershell
 docker system prune -a --volumes -f
 docker builder prune -a -f
@@ -559,6 +558,7 @@ You need to **compact** it manually.
 1. **Close Docker Desktop** completely (Quit from system tray).
 
 2. **Shut down WSL**:
+Open powershell, then run:
 ```powershell
 wsl --shutdown
 ```
