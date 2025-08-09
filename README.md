@@ -214,7 +214,73 @@ docker compose up -d
 
 ### 2) Run locally (without Docker)
 
+**Important — build Docker runtimes at least once**  
 
+- If you plan to use the **Base/ML** runtimes, you must first build the Docker images (see **1) Run with Docker → First-time setup**) so those images exist.  
+- Local mode does **not** include those Python environments unless you install the dependencies yourself; use the plain **Python** runtime locally otherwise.  
+
+
+#### First-time local setup
+
+1. **Server (Go/Gin**
+```powershell
+cd server
+go mod tidy
+go run main.go
+```
+
+2. **Client (Vite/React) — open a new terminal:**
+```powershell
+cd client
+npm install
+npm run dev
+```
+
+> Make sure client/.env contains:
+```powershell
+VITE_BACKEND_URL=http://localhost:8080
+VITE_TOTAL_UPLOAD_LIMIT=52428800
+VITE_SINGLE_FILE_LIMIT=5242880
+```
+
+####  Normal local start
+
+1. **Server**
+```powershell
+cd server
+go run main.go
+```
+
+2. Client
+```powershell
+cd client
+npm run dev
+```
+
+
+### Notes & gotchas
+
+- **Docker Desktop must be running** before any `docker compose` commands.
+
+- If `docker compose build pyml` fails, you likely haven’t built **pybase** first. Run:
+- 
+```powershell
+docker compose build pybase
+docker compose build pyml
+```
+
+- If you deleted images, you must rebuild **Base** and **ML** again.
+
+- If you delete **volumes**, any data stored there will be lost. (This project doesn’t ship a DB by default, but the warning applies if you add one.)
+
+- **Windows/macOS vs Linux**:
+Commands are the same; on Linux ensure your user has access to `/var/run/docker.sock` (add user to the `docker` group and re-login).
+
+- **Ports**: 5173 (frontend), 8080 (backend). Adjust if they clash with other services on your machine.
+
+---
+
+## How it works (execution flow)
 
 
 ---
