@@ -13,7 +13,7 @@ The live deployment currently includes **only the UI** — backend runtimes and 
 
 You can explore the interface, create/edit notebooks, and see simulated execution outputs (Demo Mode), but actual code execution is **disabled**.
 
-🌐 Live UI: [python-notebook-compiler](https://python-notebook-compiler.vercel.app/)
+🌐 Live UI: [python-notebook-compiler](https://python-notebook-compiler.vercel.app)
 
 
 <table>
